@@ -10,8 +10,31 @@ import os
 from dotenv import load_dotenv
 import json
 
+from pypdf import PdfReader
+import io
+
 # Load environment variables
 load_dotenv()
+
+def extract_text_from_pdf(pdf_file) -> str:
+    """
+    Extract text content from an uploaded PDF file
+    
+    Args:
+        pdf_file: Uploaded file object (bytes)
+        
+    Returns:
+        str: Extracted text content
+    """
+    try:
+        reader = PdfReader(pdf_file)
+        text = ""
+        for page in reader.pages:
+            text += page.extract_text() + "\n"
+        return text
+    except Exception as e:
+        raise RuntimeError(f"Failed to read PDF: {str(e)}")
+
 
 class ScientificAsset(BaseModel):
     """Ground Truth structure for scientific asset profile"""

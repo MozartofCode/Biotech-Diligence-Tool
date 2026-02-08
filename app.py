@@ -20,214 +20,54 @@ st.set_page_config(
 # Custom CSS for beautiful, modern design
 st.markdown("""
 <style>
-    /* Main theme colors */
-    :root {
-        --primary-color: #6366f1;
-        --secondary-color: #8b5cf6;
-        --success-color: #10b981;
-        --warning-color: #f59e0b;
-        --danger-color: #ef4444;
-        --bg-dark: #0f172a;
-        --bg-card: #1e293b;
-        --text-primary: #f8fafc;
-        --text-secondary: #94a3b8;
-    }
-    
-    /* Hide default streamlit elements */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    
-    /* Main background */
-    .stApp {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    }
+    /* Minimal styling for cleaner layout */
     
     /* Headers */
     h1 {
-        color: #f8fafc;
         font-weight: 700;
-        font-size: 2.5rem !important;
-        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
         margin-bottom: 0.5rem;
     }
     
-    h2 {
-        color: #e2e8f0;
+    h2, h3 {
         font-weight: 600;
-        font-size: 1.75rem !important;
         margin-top: 1rem;
     }
     
-    h3 {
-        color: #cbd5e1;
-        font-weight: 500;
-        font-size: 1.25rem !important;
-    }
-    
-    /* Card-like containers */
-    .element-container {
-        background: rgba(30, 41, 59, 0.5);
-        border-radius: 12px;
-        padding: 1rem;
-        backdrop-filter: blur(10px);
-    }
-    
-    /* Sidebar styling */
-    [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-        border-right: 1px solid rgba(99, 102, 241, 0.2);
-    }
-    
-    [data-testid="stSidebar"] .element-container {
-        background: rgba(15, 23, 42, 0.6);
-    }
-    
-    /* Text areas */
-    .stTextArea textarea {
-        background: #0f172a !important;
-        border: 2px solid #334155 !important;
-        border-radius: 8px !important;
-        color: #f8fafc !important;
-        font-family: 'Monaco', 'Courier New', monospace !important;
-        font-size: 0.9rem !important;
-        transition: all 0.3s ease;
-    }
-    
-    .stTextArea textarea:focus {
-        border-color: #6366f1 !important;
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1) !important;
-    }
-    
-    /* Buttons */
-    .stButton button {
-        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 8px !important;
-        padding: 0.75rem 2rem !important;
-        font-weight: 600 !important;
-        font-size: 1rem !important;
-        transition: all 0.3s ease !important;
-        box-shadow: 0 4px 6px rgba(99, 102, 241, 0.3) !important;
-    }
-    
-    .stButton button:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4) !important;
-    }
-    
-    /* Metrics */
-    [data-testid="stMetricValue"] {
-        color: #6366f1 !important;
-        font-size: 2rem !important;
-        font-weight: 700 !important;
-    }
-    
-    [data-testid="stMetricLabel"] {
-        color: #94a3b8 !important;
-        font-weight: 500 !important;
-    }
-    
-    /* Dataframe */
-    .stDataFrame {
-        background: #0f172a;
-        border-radius: 12px;
-        overflow: hidden;
-        border: 1px solid #334155;
-    }
-    
-    /* Success/Warning/Error boxes */
-    .stSuccess {
-        background: rgba(16, 185, 129, 0.1) !important;
-        border-left: 4px solid #10b981 !important;
-        color: #10b981 !important;
-    }
-    
-    .stWarning {
-        background: rgba(245, 158, 11, 0.1) !important;
-        border-left: 4px solid #f59e0b !important;
-        color: #f59e0b !important;
-    }
-    
-    .stError {
-        background: rgba(239, 68, 68, 0.1) !important;
-        border-left: 4px solid #ef4444 !important;
-        color: #ef4444 !important;
-    }
-    
-    /* Thought trace styling */
+    /* Thought trace styling (Clean Light Mode) */
     .thought-trace {
-        background: #0f172a;
-        border: 1px solid #334155;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
         border-radius: 8px;
         padding: 1rem;
         margin: 0.5rem 0;
         font-family: 'Monaco', 'Courier New', monospace;
         font-size: 0.85rem;
-        color: #e2e8f0;
+        color: #334155;
         max-height: 600px;
         overflow-y: auto;
     }
     
-    .thought-trace::-webkit-scrollbar {
-        width: 8px;
+    .thought-agent-a { color: #2563eb; font-weight: 600; }
+    .thought-agent-b { color: #7c3aed; font-weight: 600; }
+    .thought-supervisor { color: #059669; font-weight: 600; }
+    .thought-system { color: #d97706; font-weight: 600; }
+    
+    /* Button styling */
+    .stButton button {
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+        color: white !important;
+        font-weight: bold !important;
+        border: none !important;
     }
     
-    .thought-trace::-webkit-scrollbar-track {
-        background: #1e293b;
-        border-radius: 4px;
-    }
-    
-    .thought-trace::-webkit-scrollbar-thumb {
-        background: #6366f1;
-        border-radius: 4px;
-    }
-    
-    .thought-agent-a {
-        color: #3b82f6;
-        font-weight: 600;
-    }
-    
-    .thought-agent-b {
-        color: #8b5cf6;
-        font-weight: 600;
-    }
-    
-    .thought-supervisor {
-        color: #10b981;
-        font-weight: 600;
-    }
-    
-    .thought-system {
-        color: #f59e0b;
-        font-weight: 600;
-    }
-    
-    /* Expander */
-    .streamlit-expanderHeader {
-        background: rgba(30, 41, 59, 0.8) !important;
-        border-radius: 8px !important;
-        font-weight: 600 !important;
-        color: #e2e8f0 !important;
-    }
-    
-    /* Input field */
-    input {
-        background: #0f172a !important;
-        border: 2px solid #334155 !important;
-        border-radius: 8px !important;
-        color: #f8fafc !important;
-    }
-    
-    input:focus {
-        border-color: #6366f1 !important;
+    /* Metrics containers */
+    [data-testid="stMetricValue"] {
+        color: #4f46e5 !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# Initialize session state
+# Initialize session state (retaining session state for analysis results)
 if 'engine' not in st.session_state:
     st.session_state.engine = None
 if 'analysis_result' not in st.session_state:
@@ -238,107 +78,109 @@ if 'api_key' not in st.session_state:
     st.session_state.api_key = os.getenv("GROQ_API_KEY", "")
 
 # Sidebar Configuration
-with st.sidebar:
-    st.markdown("## ⚙️ Configuration")
-    
-    # API Key input
-    api_key_input = st.text_input(
-        "Groq API Key",
-        value=st.session_state.api_key,
-        type="password",
-        help="Enter your Groq API key for LLM inference"
-    )
-    
-    if api_key_input != st.session_state.api_key:
-        st.session_state.api_key = api_key_input
-        st.session_state.engine = None  # Reset engine on key change
-    
-    st.markdown("---")
-    
-    # Source Data Inputs
-    st.markdown("## 📄 Source Documents")
-    
-    doc1_type = st.selectbox(
-        "Document 1 Type",
-        ["Press Release", "Clinical Trial Report", "FDA Submission", "Patent Filing", "Scientific Publication"],
-        key="doc1_type"
-    )
-    
-    doc1_text = st.text_area(
-        f"{doc1_type} Content",
-        height=200,
-        placeholder="Paste the first source document here...",
-        help="Enter the text from your first source document",
-        key="doc1_text"
-    )
-    
-    st.markdown("---")
-    
-    doc2_type = st.selectbox(
-        "Document 2 Type",
-        ["Clinical Trial Report", "FDA Submission", "Press Release", "Patent Filing", "Scientific Publication"],
-        key="doc2_type"
-    )
-    
-    doc2_text = st.text_area(
-        f"{doc2_type} Content",
-        height=200,
-        placeholder="Paste the second source document here...",
-        help="Enter the text from your second source document",
-        key="doc2_text"
-    )
-    
-    st.markdown("---")
-    
-    # Analyze button
-    analyze_button = st.button("🚀 Run Analysis", use_container_width=True)
-    
-    # About section
-    with st.expander("ℹ️ About Diligence-Zero"):
-        st.markdown("""
-        **Diligence-Zero** is a high-agency agentic system that:
-        
-        - 🔍 Ingests conflicting scientific data
-        - 🤖 Uses multi-agent debate pattern
-        - 🧠 Performs deep cross-document reasoning
-        - ✅ Produces unified "Ground Truth" profiles
-        - 📊 Shows complete reasoning audit trail
-        
-        Built with Groq LPU for maximum inference speed.
-        """)
+# Only show API key config if not set in environment or if explicitly requested
+api_key_env = os.getenv("GROQ_API_KEY")
+if not api_key_env:
+    with st.sidebar:
+        st.markdown("## ⚙️ Setup")
+        api_key_input = st.text_input(
+            "Groq API Key",
+            value=st.session_state.api_key,
+            type="password",
+            help="Enter your Groq API key for LLM inference"
+        )
+        if api_key_input != st.session_state.api_key:
+            st.session_state.api_key = api_key_input
+            st.session_state.engine = None
+        else:
+            st.warning("⚠️ API Key not found in .env file")
+else:
+    # Key found in env, hide sidebar config by default
+    st.session_state.api_key = api_key_env
 
 # Main Content Area
 st.title("🧬 Diligence-Zero")
-st.markdown("**High-Agency Agentic System for Biotech Asset Analysis**")
+st.markdown("### High-Agency Agentic System for Biotech Asset Analysis")
 st.markdown("*Reduces manual asset diligence from hours to seconds by identifying \"Confidence Gaps\"*")
 
 st.markdown("---")
 
+from backend import DiligenceEngine, ScientificAsset, extract_text_from_pdf
+
+# ... (rest of imports) ...
+
+# ... (omitted config and styling code) ...
+
+# Document Input Section (Main Page)
+doc1_content = None
+doc2_content = None
+
+with st.expander("📄 Source Documents (Upload PDFs)", expanded=not st.session_state.analysis_result):
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("#### Document 1")
+        doc1_type = st.selectbox(
+            "Type",
+            ["Press Release", "Clinical Trial Report", "FDA Submission", "Patent Filing", "Scientific Publication"],
+            key="doc1_type"
+        )
+        uploaded_file1 = st.file_uploader("Upload PDF", type=['pdf'], key="doc1_upload")
+        if uploaded_file1:
+            try:
+                doc1_content = extract_text_from_pdf(uploaded_file1)
+                st.success(f"✅ Loaded: {uploaded_file1.name}")
+            except Exception as e:
+                st.error(f"Error reading PDF: {e}")
+    
+    with col2:
+        st.markdown("#### Document 2")
+        doc2_type = st.selectbox(
+            "Type",
+            ["Clinical Trial Report", "FDA Submission", "Press Release", "Patent Filing", "Scientific Publication"],
+            key="doc2_type"
+        )
+        uploaded_file2 = st.file_uploader("Upload PDF", type=['pdf'], key="doc2_upload")
+        if uploaded_file2:
+            try:
+                doc2_content = extract_text_from_pdf(uploaded_file2)
+                st.success(f"✅ Loaded: {uploaded_file2.name}")
+            except Exception as e:
+                st.error(f"Error reading PDF: {e}")
+    
+    # Analyze button centered
+    st.markdown("<br>", unsafe_allow_html=True)
+    col_centered = st.columns([1, 2, 1])
+    with col_centered[1]:
+        analyze_button = st.button("🚀 Analyzing Conflicting Documents", use_container_width=True)
+
+
 # Run analysis when button is clicked
 if analyze_button:
     if not st.session_state.api_key:
-        st.error("❌ Please enter your Groq API Key in the sidebar configuration.")
-    elif not doc1_text or not doc2_text:
-        st.error("❌ Please provide both source documents in the sidebar.")
+        st.error("❌ Please ensure your Groq API Key is configured in .env")
+    elif not doc1_content or not doc2_content:
+        st.error("❌ Please upload both PDF documents to proceed.")
     else:
         # Initialize or get engine
         if st.session_state.engine is None:
             try:
                 st.session_state.engine = DiligenceEngine(api_key=st.session_state.api_key)
-                st.success("✅ Diligence Engine initialized successfully!")
+                st.toast("✅ Diligence Engine initialized!", icon="🚀")
             except Exception as e:
                 st.error(f"❌ Failed to initialize engine: {str(e)}")
                 st.stop()
         
         # Progress indicator
-        with st.spinner("🔄 Analyzing documents with multi-agent system..."):
+        with st.spinner("🔄 Reading PDFs and initializing multi-agent debate..."):
             try:
-                # Run the analysis
+                # Run the analysis using extracted content
                 start_time = time.time()
                 asset, trace = st.session_state.engine.process_dual_documents(
-                    doc1_text, doc1_type,
-                    doc2_text, doc2_type
+                    doc1_content, doc1_type,
+                    doc2_content, doc2_type
                 )
+
                 end_time = time.time()
                 
                 st.session_state.analysis_result = asset
@@ -464,61 +306,4 @@ if st.session_state.analysis_result:
             use_container_width=True
         )
 
-else:
-    # Welcome screen when no analysis has been run
-    st.markdown("## 👋 Welcome to Diligence-Zero")
-    
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        st.markdown("### 🔍 Step 1")
-        st.markdown("Configure your Groq API key in the sidebar")
-    
-    with col2:
-        st.markdown("### 📄 Step 2")
-        st.markdown("Paste two conflicting scientific documents")
-    
-    with col3:
-        st.markdown("### 🚀 Step 3")
-        st.markdown("Click 'Run Analysis' and watch the magic happen")
-    
-    st.markdown("---")
-    
-    # Example use case
-    st.markdown("## 💡 Example Use Cases")
-    
-    example_col1, example_col2 = st.columns(2)
-    
-    with example_col1:
-        st.markdown("""
-        **🧪 Scenario 1: Press Release vs Clinical Trial**
-        - Document 1: Company press release announcing "excellent safety"
-        - Document 2: Actual clinical trial report showing adverse events
-        - **Result**: Agent identifies discrepancy and provides ground truth
-        """)
-    
-    with example_col2:
-        st.markdown("""
-        **📊 Scenario 2: FDA vs Patent Filing**
-        - Document 1: FDA submission with Phase 2 designation
-        - Document 2: Patent filing claiming Phase 3 readiness
-        - **Result**: Supervisor reconciles timeline and flags conflict
-        """)
-    
-    st.info("💡 **Pro Tip**: The system works best with documents that contain specific scientific parameters like drug names, clinical phases, and safety data.")
 
-# Footer
-st.markdown("---")
-footer_col1, footer_col2, footer_col3 = st.columns(3)
-
-with footer_col1:
-    st.markdown("**Built with:**")
-    st.markdown("🚀 Groq LPU (`llama-3.3-70b-versatile`)")
-
-with footer_col2:
-    st.markdown("**Architecture:**")
-    st.markdown("🤖 Multi-Agent Debate Pattern")
-
-with footer_col3:
-    st.markdown("**For:**")
-    st.markdown("🏢 Convexia (YC S25)")
