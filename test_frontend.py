@@ -187,8 +187,8 @@ def test_ui_components():
         if 'st.sidebar' in code:
             print("✓ Sidebar implemented")
         
-        if 'st.text_area' in code:
-            print("✓ Text area inputs present")
+        if 'st.file_uploader' in code:
+            print("✓ File uploader inputs present")
         
         if 'st.button' in code:
             print("✓ Action button present")
@@ -235,7 +235,7 @@ To manually test the Streamlit UI, follow these steps:
    
    ✓ Sidebar Configuration:
      - API key input field is visible
-     - Two document input text areas are present
+     - Two document uploaders are present
      - Document type selectors work
      - "Run Analysis" button is visible
    

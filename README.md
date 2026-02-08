@@ -114,11 +114,11 @@ The application will open in your browser at `http://localhost:8501`
 
 ### Step 2: Provide Source Documents
 - **Document 1**: Select document type (Press Release, Clinical Trial Report, FDA Submission, etc.)
-- Paste the first source text in the text area
-- **Document 2**: Select document type and paste the second source text
+- **Upload PDF**: Upload the first source PDF
+- **Document 2**: Select document type and upload the second source PDF
 
 ### Step 3: Run Analysis
-- Click the **"🚀 Run Analysis"** button
+- Click the **"🚀 Analyzing Conflicting Documents"** button
 - Watch the **Agent Thought Trace** update in real-time (right column)
 - View the **Verified Asset Profile** (left column)
 
@@ -135,23 +135,14 @@ The application will open in your browser at `http://localhost:8501`
 **Scenario**: Press Release vs. Clinical Trial Report
 
 **Document 1 (Press Release):**
-```
-BioTech Corp announces positive Phase 2 results for BTX-501, a novel small 
-molecule targeting inflammatory diseases. The drug demonstrated an excellent 
-safety profile with minimal adverse events reported.
-```
+BioTech Corp announces positive Phase 2 results for BTX-501...
 
 **Document 2 (Clinical Trial Report):**
-```
-BTX-501 Clinical Trial Report: Phase 1 study completed with 45 patients.
-Molecule type: Small molecule kinase inhibitor. Safety findings: 12% of 
-patients experienced mild-to-moderate hepatotoxicity, which was monitored 
-and resolved with dose adjustment.
-```
+BTX-501 Clinical Trial Report: Phase 1 study completed...
 
 **Expected Output:**
 - ⚠️ **Conflict 1**: Clinical Phase discrepancy (Phase 2 vs Phase 1)
-- ⚠️ **Conflict 2**: Safety findings discrepancy (minimal AEs vs hepatotoxicity)
+- ⚠️ **Conflict 2**: Safety findings discrepancy
 - **Confidence Score**: ~0.65 (lowered due to conflicts)
 - **Ground Truth**: BTX-501, Small molecule, reconciled phase and safety data
 
@@ -164,24 +155,10 @@ and resolved with dose adjustment.
 python test_backend.py
 ```
 
-**Tests include:**
-- ✅ API Connectivity
-- ✅ Pydantic Schema Integrity
-- ✅ Conflict Detection
-- ✅ Latency Check (Groq LPU speed)
-- ✅ JSON Robustness
-
 ### Frontend Tests
 ```bash
 python test_frontend.py
 ```
-
-**Tests include:**
-- ✅ File Structure
-- ✅ Import Validation
-- ✅ Syntax Validation
-- ✅ Backend Integration
-- ✅ UI Component Configuration
 
 ---
 
@@ -189,16 +166,13 @@ python test_frontend.py
 
 ```
 Biotech-Diligence-Tool/
-├── app.py                      # Streamlit UI with beautiful design
+├── app.py                      # Streamlit UI with PDF support
 ├── backend.py                  # Multi-agent logic with Groq API
 ├── requirements.txt            # Python dependencies
 ├── test_backend.py             # Backend test suite
 ├── test_frontend.py            # Frontend test suite
 ├── .env.example                # Environment variable template
-├── .gitignore                  # Git ignore rules
-├── Master_Implementation_Plan.md    # Project vision
-├── design_implementation.md    # UI design specifications
-└── backend_implementation.md   # Backend logic specifications
+└── .gitignore                  # Git ignore rules
 ```
 
 ---
@@ -230,7 +204,6 @@ The Streamlit interface follows modern web design principles:
 ## 🚧 Future Roadmap
 
 - [ ] **Multi-Document Support**: Analyze 3+ conflicting sources simultaneously
-- [ ] **PDF Ingestion**: Direct upload of scientific PDFs with text extraction
 - [ ] **Export Functionality**: Download asset profiles as JSON, CSV, or PDF reports
 - [ ] **Historical Tracking**: Compare how drug data changes over time
 - [ ] **Custom Agent Personas**: Specialized agents for different document types
