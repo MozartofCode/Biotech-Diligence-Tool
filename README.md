@@ -7,6 +7,10 @@
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.31-red.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
+## 🚀 Live Demo
+
+**[Click here to try the live application!](https://biotech-diligence-tool.onrender.com/)**
+
 ---
 
 ## 🎯 The Hook
